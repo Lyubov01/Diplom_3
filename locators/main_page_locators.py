@@ -10,6 +10,7 @@ class MainPageLocators:
     # Конструктор, первая булка
     BURGER_INGREDIENT = (By.XPATH,'//p[contains(@class,"BurgerIngredient_ingredient__text") and '
     'text()="Флюоресцентная булка R2-D3"]')
+    
     # крестик закрытия карточки ингредиента
     CLOSE_BURGER_INGREDIENT_CARD = [
         By.XPATH,'//section[contains(@class,"Modal_modal__")]'
@@ -20,10 +21,13 @@ class MainPageLocators:
     '//p[contains(@class,"counter_counter__num_")]')
 
     # кнопка «Оформить заказ»
-    ARRANGE_ORDER_BUTTON = [By.XPATH,'//button[contains(@class,"button_button__33qZ0") and text()="Оформить заказ"]']
-
+    ARRANGE_ORDER_BUTTON = (By.XPATH,'//button[contains(text(),"Оформить заказ")]')
     # корзина (зона конструктора)
     BASKET = (By.XPATH,'//div[contains(@class,"BurgerConstructor_basket__")]')
+
+    BUN_INGREDIENT = (By.XPATH, '//h2[text()="Булки"]/following::a[1]')#булка
+
+    FILLING_INGREDIENT = (By.XPATH, '//h2[text()="Начинки"]/following::a[1]')#начинка
 
     # заголовки
     HEADLINE_ASSEMBLE_BURGER = [By.XPATH, '//h1[text()="Соберите бургер"]']

@@ -70,7 +70,8 @@ class TestMainPage:
             start = page.get_ingredient_counter()
 
         with allure.step('Перетаскиваем ингредиент в конструктор'):
-            page.drag_ingredient_to_constructor()
+            page.drag_bun_to_constructor()
+            page.drag_filling_to_constructor()
 
         with allure.step('Считываем новое значение счётчика'):
             new = page.get_ingredient_counter()

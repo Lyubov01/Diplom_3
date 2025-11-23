@@ -15,3 +15,4 @@ class AccountPage(BasePage):
         self.wait_visible(MainPageLocators.EMAIL_FILL).send_keys(email)
         self.wait_visible(MainPageLocators.PASSWORD_FILL).send_keys(password)
         self.click(PersonalAccountPageLocators.ENTER_BUTTON)
+        self.wait_visible(MainPageLocators.ARRANGE_ORDER_BUTTON, timeout=20)

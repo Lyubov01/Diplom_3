@@ -29,10 +29,15 @@ class MainPage(BasePage):
         except (TimeoutException, NoSuchElementException):
             return 0
 
-    def drag_ingredient_to_constructor(self):
-        ingredient = self.driver.find_element(*MainPageLocators.BURGER_INGREDIENT)
+    def drag_bun_to_constructor(self):#Добавляю булку
+        bun = self.wait_visible(MainPageLocators.BUN_INGREDIENT)
         basket = self.driver.find_element(*MainPageLocators.BASKET)
-        ActionChains(self.driver).drag_and_drop(ingredient, basket).perform()
+        ActionChains(self.driver).drag_and_drop(bun, basket).perform()
+
+    def drag_filling_to_constructor(self):#добавляю начинку
+        filling = self.wait_visible(MainPageLocators.FILLING_INGREDIENT)
+        basket = self.driver.find_element(*MainPageLocators.BASKET)
+        ActionChains(self.driver).drag_and_drop(filling, basket).perform()
 
     # модалка ингредиента
     def ingredient_modal_is_open(self) -> bool:
@@ -42,9 +47,10 @@ class MainPage(BasePage):
         self.click(MainPageLocators.CLOSE_INGREDIENT_MODAL)
         self.wait_invisible(MainPageLocators.INGREDIENT_MODAL)
 
-    # оформление заказа
+    # оформление заказа    
     def click_arrange_order_button(self):
-        self.click(MainPageLocators.ARRANGE_ORDER_BUTTON)
+        # self.wait.until(EC.element_to_be_clickable(MainPageLocators.ARRANGE_ORDER_BUTTON)).click()
+        self.click(MainPageLocators.ARRANGE_ORDER_BUTTON, timeout=25)
 
     def wait_order_started_text(self):
         return self.wait_visible(MainPageLocators.TEXT_WINDOW_ORDER)

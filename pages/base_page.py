@@ -1,3 +1,4 @@
+from selenium.common import ElementClickInterceptedException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -7,6 +8,7 @@ from url import BASE_URL
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
+        self.wait = WebDriverWait(driver, 25)
 
     def open(self, path: str = "/"):
         self.driver.get(BASE_URL + path)
@@ -20,7 +22,11 @@ class BasePage:
             EC.element_to_be_clickable(locator))
 
     def click(self, locator, timeout=10):
-        self.wait_clickable(locator, timeout).click()
+        element = self.wait_clickable(locator, timeout)
+        try:
+            element.click()
+        except ElementClickInterceptedException:
+            self.driver.execute_script("arguments[0].click();", element)
 
     def get_text(self, locator, timeout=10):
         return self.wait_visible(locator, timeout).text
